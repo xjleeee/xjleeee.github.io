@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>windows环境下github+hexo建站 | Jun Lee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="自己搭建这个博客用了大概三四个小时（改了改主题什么的），查了很多篇文档，大致总结一下吧。掉坑的地方基本就是我用的是github桌面版，弄那个ssh的时候出了点问题。原来不用再搞ssh了（==）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows环境下github+hexo建站">
+<meta property="og:url" content="http://yoursite.com/2016/04/28/github-hexo建站/index.html">
+<meta property="og:site_name" content="Jun Lee">
+<meta property="og:description" content="自己搭建这个博客用了大概三四个小时（改了改主题什么的），查了很多篇文档，大致总结一下吧。掉坑的地方基本就是我用的是github桌面版，弄那个ssh的时候出了点问题。原来不用再搞ssh了（==）。">
+<meta property="og:image" content="http://yoursite.com/first_1.png">
+<meta property="og:updated_time" content="2016-05-02T06:16:36.789Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows环境下github+hexo建站">
+<meta name="twitter:description" content="自己搭建这个博客用了大概三四个小时（改了改主题什么的），查了很多篇文档，大致总结一下吧。掉坑的地方基本就是我用的是github桌面版，弄那个ssh的时候出了点问题。原来不用再搞ssh了（==）。">
+<meta name="twitter:image" content="http://yoursite.com/first_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Jun Lee" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
+  
+  
+      <link href="//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css" rel="stylesheet">
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.9/clipboard.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+          fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+          scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.0.9/scrollreveal.min.js"
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+  
+      <script>
+          var _hmt = _hmt || [];
+          (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?89971989f2057896a92700940f54889c";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+          })();
+      </script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/tx.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Jun Lee</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">QAQ</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/suibi/">日志&amp;随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:1301457014@qq.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/5212732518" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/xjleeee" title="GitHub"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=98329986" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="/" title="QQ"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">nothing to say</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Jun Lee</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/tx.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Jun Lee</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">QAQ</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/suibi/">日志&amp;随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:1301457014@qq.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/u/5212732518" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/xjleeee" title="GitHub"></a>
+                            
+                                <a class="fa 网易云音乐" target="_blank" href="http://music.163.com/#/user/home?id=98329986" title="网易云音乐"></a>
+                            
+                                <a class="fa QQ" target="_blank" href="/" title="QQ"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-github-hexo建站" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/28/github-hexo建站/" class="article-date">
+      <time datetime="2016-04-28T10:05:16.000Z" itemprop="datePublished">2016-04-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      windows环境下github+hexo建站
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/爱折腾/">爱折腾</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>自己搭建这个博客用了大概三四个小时（改了改主题什么的），查了很多篇文档，大致总结一下吧。掉坑的地方基本就是我用的是github桌面版，弄那个ssh的时候出了点问题。原来不用再搞ssh了（==）。<br> <a id="more"></a><br>今天闲着无聊刷博客看到一篇文章，你为什要写博客，感觉是时候自己弄一个博客了。之前在csdn上写过几篇，感觉界面用着听不舒服的，于是就想自己搭建一个博客。其实我一开始想全部自己写的，但是凭借我加一起一共自学了两月的html+css+javascrapy，写了几百行代码我就已经崩溃了，还是老老实实的用框架吧QAQ。一共搞了一个下午大概3，4个小时吧。前几天买了一个域名，想和新浪云sae上我自己玩的网站绑定一下，但是按照sae的介绍进行并没有什么卵用，dns解析不了。刚好就给我正要建的博客用了。域名是lxjun.top(阿里云四软妹币买的==)。好把直接进入正题吧。网上查了一下博客的框架，较为收人推崇的是github+ hexo。github我是有的，没有的话直接申请就行了。</p>
+<p>&emsp;&emsp;&emsp;github为用户提供了静态网页的代码空间。使用方法是：<br>&emsp;&emsp;&emsp; 在github上新建一个名为    yourusername. github.io 的repository即可。然后先放着就行了</p>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a><strong>配置环境</strong></h2><p>&emsp;&emsp;&emsp;把<a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a>装好，傻瓜步骤，一直下一步就行了</p>
+<p>&emsp;&emsp;&emsp;之后就是安装<a href="https://git-scm.com/download/" target="_blank" rel="external">git</a>，也是傻瓜步骤，一直下一步就行了</p>
+<h2 id="连接GitHub"><a href="#连接GitHub" class="headerlink" title="连接GitHub"></a><strong>连接GitHub</strong></h2><p>本地Git连接GitHub需要配置密匙SSH，以便于本地Git与GitHub上的项目连接。在本地电脑上检查是否存在SSH：<br><code>$ cd ~/. ssh</code><br>检查本机的ssh密钥<br>如果提示：No such file or directory 说明你是第一次使用git<br>然后生成新的密匙：</p>
+<pre><code>$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;
+</code></pre><p>然后系统会要你输入密码（这是设置密码）：</p>
+<pre><code>Enter passphrase (empty for no passphrase):&lt;输入密码&gt;
+
+Enter same passphrase again:&lt;再次输入加密串&gt;
+</code></pre><p>就成功设置ssh key了</p>
+<p>打开本地C:\localhost.ssh\id_rsa.pub文件。此文件里面内容为刚才生成人密钥。如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。各电脑所在文件夹可能不同，在c盘搜索文件名就行了。</p>
+<p>接下来在浏览器中打开你的github账号。点击右上角setting，进入SSH and GPG key项中，选择add ssh key。<br>把你本地生成的密钥复制到里面（key文本框中）， 点击 add key即可。</p>
+<p>可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：<br><code>$ ssh -T git@github.com</code><br>如果是下面的反馈：<br><code>The authenticity of host &#39;github.com (207.97.227.239)&#39; can&#39;t be established. RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48. Are you sure you want to continue connecting (yes/no)?</code></p>
+<p>输入yes看到：</p>
+<p><code>Hi cnfeat! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></p>
+<p>表示连接成功。</p>
+<p>如果安装有github for windows桌面版的话，sshkey就不需要设置了，在桌面版点击右上角设置-&gt;options<br><img src="/first_1.png" alt=""><br>将default shell选择为git bash即可。</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a><strong>安装hexo</strong></h2><p>Node和Git都安装好后,首先创建一个文件夹,如blog,用户存放hexo的配置文件,然后进入blog里安装Hexo。</p>
+<p>右键代开git bash执行如下命令安装Hexo：</p>
+<p>npm install-g hexo</p>
+<p>然后，执行init命令初始化hexo,命令：</p>
+<p>hexo init</p>
+<p>hexo安装完毕，但是还并不会用，而且还没有和你的github关联</p>
+<p>生成静态页面</p>
+<p>hexo generate 可简写为 hexo g</p>
+<p>启动本地服务，进行文章预览调试，命令：</p>
+<p>hexo server 可简写为 hexo s</p>
+<p>浏览器输入<code>http://localhost:4000</code></p>
+<p>到此hexo就安装完毕了，如果想更换主题的话可以参见<a href="#hexo">hexo主题更换</a></p>
+<p>用 hexo d将代码部署到你的github中即在浏览器中输入<code>http://your_user_name.github.io</code>来访问你的博客（your_user_name为你的github用户名）</p>
+<h2 id="绑定独立域名"><a href="#绑定独立域名" class="headerlink" title="绑定独立域名"></a><strong>绑定独立域名</strong></h2><p>自行申请独立域名，域名解析网站上添加A记录，在cmd中输入 <code>ping  http://your_user_name.github.io</code> 来获取ip地址。地址为A记录的记录值，主机记录为@。再添加一个A记录，记录值还是这个ip，主机记录为www，然后在你的github 的your_user_name.github.io仓库中创建一个CNAME无类型文件，文件内容为你申请的域名（例：example.com）。等待几分钟即可通过独立域名访问你的博客了</p>
+<h2 id="不折腾版"><a href="#不折腾版" class="headerlink" title="不折腾版"></a><strong>不折腾版</strong></h2><p>在逛贴吧的时候发现了一个便携版，自称是免安装解压即用的<a href="https://project.bitmoe.cn/PortableHexo/" target="_blank" rel="external">Hexo便携版网站</a>，<a href="https://github.com/Bitmoe/PortableHexo" target="_blank" rel="external">Hexo便携版github</a>。这个是面对完全小白的，按照提示一步步运行脚本就行了。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/28/github-hexo建站/">windows环境下github+hexo建站</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Jun Lee</a></p>
+        <p><span>发布时间:</span>2016-04-28, 18:05:16</p>
+        <p><span>最后更新:</span>2016-05-02, 14:16:36</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/28/github-hexo建站/" title="windows环境下github+hexo建站">http://yoursite.com/2016/04/28/github-hexo建站/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/04/28/github-hexo建站/　　作者: Jun Lee" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/04/29/complied-my-blog/">
+                    我的博客建好了
+                </a>
+            </div>
+        
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置环境"><span class="toc-number">1.</span> <span class="toc-text">配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接GitHub"><span class="toc-number">2.</span> <span class="toc-text">连接GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装hexo"><span class="toc-number">3.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绑定独立域名"><span class="toc-number">4.</span> <span class="toc-text">绑定独立域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不折腾版"><span class="toc-number">5.</span> <span class="toc-text">不折腾版</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"windows环境下github+hexo建站　| Jun Lee　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="http://yoursite.com/2016/04/28/github-hexo建站/" data-title="windows环境下github+hexo建站" data-url="http://yoursite.com/2016/04/28/github-hexo建站/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lxjun"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+<!--    百度自动推送 这里的代码将会添加到多说评论区上下
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/29/complied-my-blog/" title="上一篇: 我的博客建好了">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/10/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/03/电脑升级win10了/">电脑升级win10了。</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/02/Sublime使用技巧/">Sublime破解及使用技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/01/Python琐碎小知识/">Python琐碎小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/30/hexo主题/">Hexo主题</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/29/complied-my-blog/">我的博客建好了</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/28/github-hexo建站/">windows环境下github+hexo建站</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Jun Lee
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+    <script src="//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
